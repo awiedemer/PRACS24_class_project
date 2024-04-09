@@ -14,6 +14,7 @@ In my project I intend to
 1. Download human gut microbiome shotgun metagenomic dataset files from NCBI SRA; SRP083099, Bioproject ID PRJNA340216
 2. Check quality 
 3. Run Kraken2 for assigning taxonomy
+4. Run Bracken to estimate species-level relative abundances 
 
 ## Why this?
 
@@ -25,10 +26,15 @@ I hope to make three data piplines using shell scripts in the OSC to
 
 1. Automatically download the data from NCBI with either SFTP or Globus (I am currently unsure on how to do this)
 2. Check data quality (either fastQC or multiQC, SLURM batch job)
-2. Assign taxonomy with Karken2 (this will most defenetly be a SLURM batch job)
+3. Assign taxonomy with Karken2 (this will most defenetly be a SLURM batch job)
+4. Estimate species-level relative abundances with Bracken (this will most defenetly be a SLURM batch job)
 
-# Things I am uncertain about
+# Uncertenties
 
-- How to get the data from NCBI using SFTP or Globus
+Most of these tools are new to me and I will have to learn them, so I am mostly uncertain about having to learn those. 
 
-- How to use Kraken2
+- I do not know how to get the data from NCBI using SFTP or Globus
+- I do not know how to use Kraken2 nor Bracken and will have to learn it
+
+For this analysis, I'm also uncertain if using this k-mers approach is better than building contigs and I will look into the pros and cons of using each
+
