@@ -13,3 +13,4 @@ In my project I intend to
 1. Download human gut microbiome shotgun metagenomic dataset files from NCBI SRA; SRP083099, Bioproject ID PRJNA340216
 2. Check quality 
 3. Run Kraken2 for assigning taxonomy
+4. Run Bracken to estimate species-level relative abundances 
