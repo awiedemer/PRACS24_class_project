@@ -9,3 +9,6 @@ scripts/play/
 
 conda/
 *~
+
+./
+slurm*
