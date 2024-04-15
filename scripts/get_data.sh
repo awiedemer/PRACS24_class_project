@@ -7,14 +7,24 @@
 set -euo pipefail
 
 # get in the right place
-cd /fs/ess/PAS2700/users/awiedemer673/class_project/
+cd /fs/ess/PAS2700/users/$USER/class_project/
 
 # set variable for SRA files to download. This script only will take NCBI SRA names
 SRA_name=$1
 
+# dir variable
+outdir=$2
+
+# Initial reporting
+echo "# Starting script get_data.sh"
+date
+echo "# Input SRA file:      $SRA_name"
+echo "# Output dir:          $outdir"
+echo
+
 #check if input is correct
-if [[ ! "$#" -eq 1 ]]; then
-    echo "Error: Requires 1 input of database name"
+if [[ ! "$#" -eq 2 ]]; then
+    echo "Error: Requires 2 inputs of database name followed by output dir"
     exit 1
 fi
 
@@ -29,16 +39,21 @@ else
     echo "./conda/fastq-dl already exists."
 fi
 
-# Check if the ./data/fastqc directory exists
-if [ ! -d "./data/fastqc" ]; then
-    echo "Directory ./data/fastqc does not exist. Creating directory."
-    mkdir -p ./data/fastqc
+# Check if the output dir directory exists
+if [ ! -d "./data/$outdir" ]; then
+    echo "Directory ./data/"$outdir" does not exist. Creating directory."
+    mkdir -p ./data/$outdir
 else
-    echo "./data/fastqc already exists."
+    echo "./data/"$outdir" already exists."
 fi
 
 # activate fastq-dl for downloading data
 conda activate ./conda/fastq-dl
 
 # get da data
-fastq-dl --accession "$SRA_name" --provider sra --outdir ./data/fastqc --only-provider  
+fastq-dl --accession "$SRA_name" --provider sra --outdir "$outdir" --only-provider  
+
+# Final reporting
+echo 
+echo "# Finished script get_data.sh"
+date
