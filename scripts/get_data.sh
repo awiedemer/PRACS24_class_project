@@ -12,6 +12,12 @@ cd /fs/ess/PAS2700/users/awiedemer673/class_project/
 # set variable for SRA files to download. This script only will take NCBI SRA names
 SRA_name=$1
 
+#check if input is correct
+if [[ ! "$#" -eq 1 ]]; then
+    echo "Error: Requires 1 input of database name"
+    exit 1
+fi
+
 # load conda
 module load miniconda3/24.1.2-py310
 
