@@ -9,6 +9,9 @@ set -euo pipefail
 # get in the right place
 cd /fs/ess/PAS2700/users/awiedemer673/class_project/
 
+# set variable for SRA files to download. This script only will take NCBI SRA names
+SRA_name=$1
+
 # load conda
 module load miniconda3/24.1.2-py310
 
@@ -32,4 +35,4 @@ fi
 conda activate ./conda/fastq-dl
 
 # get da data
-fastq-dl --accession SRP083099 --provider sra --outdir ./data/fastqc --only-provider  
+fastq-dl --accession "$SRA_name" --provider sra --outdir ./data/fastqc --only-provider  
