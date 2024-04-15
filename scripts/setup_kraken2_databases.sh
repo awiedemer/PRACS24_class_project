@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=PAS2700
-#SBATCH --time 8:00:00
-#SBATCH --cpus-per-task=18
+#SBATCH --time 12:00:00
+#SBATCH --cpus-per-task=28
 #SBATCH --mail-type=END,FAIL
 
 #saftey first
@@ -46,7 +46,7 @@ if [ ! -f "$DBNAME" ]; then
     kraken2-build --standard --db "$DBNAME"
 elif [ ! -s "$DBNAME" ]; then
     echo "Database file $DBNAME is empty. Building database."
-    kraken2-build --standard --threads 18 --db "$DBNAME"
+    kraken2-build --standard --threads 28 --db "$DBNAME"
 else
     echo "Kraken2 database is already built"
 fi

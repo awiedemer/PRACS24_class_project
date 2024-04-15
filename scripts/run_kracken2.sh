@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=PAS2700
 #SBATCH --time 4:00:00
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=18
 #SBATCH --mail-type=END,FAIL
 
 set -euo pipefail
@@ -26,7 +26,15 @@ REPORTDIR=./kraken2/kraken_reports
 OUTDIR=./kraken2/kraken_outputs
 
 # make dirs
-mdkir -p $REPORTDIR $OUTDIR
+mkdir -p $REPORTDIR $OUTDIR
+
+# Initial reporting
+echo "# Starting script run_kraken2.sh"
+date
+echo "# kraken2 database dir:          $DBNAME"
+echo "# input data dir:                $INPUTDATA"
+echo "# report output dir:             $REPORTDIR"
+echo "# results output dir:            $OUTDIR"
 
 # load conda
 module load miniconda3/24.1.2-py310
@@ -58,5 +66,5 @@ for file in "$INPUTDATA"/*.fastq.gz; do
 
     # run kraken2
 
-   kraken2 --db $DBNAME --gzip-compressed --report $REPORTOUT --report-minimizer-data --minimum-hit-groups 3 --threads 10 $file > $OUTPUT
+   kraken2 --db $DBNAME --gzip-compressed --report $REPORTOUT --report-minimizer-data --minimum-hit-groups 3 --threads 18 $file > $OUTPUT
 done
