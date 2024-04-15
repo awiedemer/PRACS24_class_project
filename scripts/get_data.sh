@@ -6,11 +6,30 @@
 
 set -euo pipefail
 
+# get in the right place
+cd /fs/ess/PAS2700/users/awiedemer673/class_project/
+
 # load conda
 module load miniconda3/24.1.2-py310
 
+# Check if the ./conda/fastq-dl directory exists
+if [ ! -d "./conda/fastq-dl" ]; then
+    echo "Directory ./conda/fastq-dl does not exist. Creating conda environment."
+    conda create -y -c conda-forge -c bioconda -p ./conda/fastq-dl fastq-dl
+else
+    echo "./conda/fastq-dl already exists."
+fi
+
+# Check if the ./data/fastqc directory exists
+if [ ! -d "./data/fastqc" ]; then
+    echo "Directory ./data/fastqc does not exist. Creating directory."
+    mkdir -p ./data/fastqc
+else
+    echo "./data/fastqc already exists."
+fi
+
 # activate fastq-dl for downloading data
-conda activate /fs/ess/PAS2700/users/awiedemer673/class_project/conda/fastq-dl
+conda activate ./conda/fastq-dl
 
 # get da data
-fastq-dl --accession SRP083099 --provider sra --outdir /fs/ess/PAS2700/users/awiedemer673/class_project/data/fastqc --only-provider  
+fastq-dl --accession SRP083099 --provider sra --outdir ./data/fastqc --only-provider  
