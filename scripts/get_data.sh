@@ -40,11 +40,11 @@ else
 fi
 
 # Check if the output dir directory exists
-if [ ! -d "./data/$outdir" ]; then
-    echo "Directory ./data/"$outdir" does not exist. Creating directory."
-    mkdir -p ./data/$outdir
+if [ ! -d "$outdir" ]; then
+    echo "Directory "$outdir" does not exist. Creating directory."
+    mkdir -p $outdir
 else
-    echo "./data/"$outdir" already exists."
+    echo ""$outdir" already exists."
 fi
 
 # activate fastq-dl for downloading data
