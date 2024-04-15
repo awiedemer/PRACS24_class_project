@@ -12,3 +12,6 @@ conda/
 
 ./
 slurm*
+
+kraken2/
+*~
