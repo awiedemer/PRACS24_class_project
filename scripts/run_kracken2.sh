@@ -68,3 +68,8 @@ for file in "$INPUTDATA"/*.fastq.gz; do
 
    kraken2 --db $DBNAME --gzip-compressed --report $REPORTOUT --report-minimizer-data --minimum-hit-groups 3 --threads 18 $file > $OUTPUT
 done
+
+# Final reporting
+echo 
+echo "# Finished script run_kraken2.sh"
+date
