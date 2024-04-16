@@ -43,6 +43,7 @@ module load miniconda3/24.1.2-py310
 if [ ! -d "./conda/kraken2" ]; then
     echo "Directory ./conda/kraken2 does not exist. Creating conda environment."
     conda create -y -p ./conda/kraken2 -c bioconda kraken2
+    echo "Completed creating kraken2 conda environment."
 else
     echo "./conda/kraken2 already exists."
 fi

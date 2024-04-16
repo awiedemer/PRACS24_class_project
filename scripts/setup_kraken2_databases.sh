@@ -32,6 +32,7 @@ module load miniconda3/24.1.2-py310
 if [ ! -d "./conda/kraken2" ]; then
     echo "Directory ./conda/kraken2 does not exist. Creating conda environment."
     conda create -y -p ./conda/kraken2 -c bioconda kraken2
+    echo "Completed creating kraken2 conda environment."
 else
     echo "./conda/kraken2 already exists."
 fi
@@ -44,9 +45,11 @@ if [ ! -f "$DBNAME" ]; then
     echo "Database file $DBNAME does not exist. Creating directory and building database."
     mkdir -p "$DBNAME"
     kraken2-build --standard --threads 28 --db "$DBNAME"
+    echo "Completed creating $DBNAME directory and building database."
 elif [ ! -s "$DBNAME" ]; then
     echo "Database file $DBNAME is empty. Building database."
     kraken2-build --standard --threads 28 --db "$DBNAME"
+    echo "Completed building database."
 else
     echo "Kraken2 database is already built"
 fi

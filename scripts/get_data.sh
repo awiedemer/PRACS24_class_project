@@ -35,6 +35,7 @@ module load miniconda3/24.1.2-py310
 if [ ! -d "./conda/fastq-dl" ]; then
     echo "Directory ./conda/fastq-dl does not exist. Creating conda environment."
     conda create -y -c conda-forge -c bioconda -p ./conda/fastq-dl fastq-dl
+    echo "Completed creating conda environment."
 else
     echo "./conda/fastq-dl already exists."
 fi
@@ -43,6 +44,7 @@ fi
 if [ ! -d "$outdir" ]; then
     echo "Directory "$outdir" does not exist. Creating directory."
     mkdir -p $outdir
+    echo "Completed creating "$outdir" directory."
 else
     echo ""$outdir" already exists."
 fi

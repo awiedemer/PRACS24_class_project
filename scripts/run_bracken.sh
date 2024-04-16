@@ -70,6 +70,7 @@ module load miniconda3/24.1.2-py310
 if [ ! -d "./conda/bracken" ]; then
     echo "Directory ./conda/bracken does not exist. Creating conda environment."
     conda create -y -p ./conda/bracken -c bioconda bracken
+    echo "Completed creating Bracken conda environment."
 else
     echo "./conda/bracken already exists."
 fi
