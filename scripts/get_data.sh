@@ -42,11 +42,11 @@ fi
 
 # Check if the output dir directory exists
 if [ ! -d "$outdir" ]; then
-    echo "Directory "$outdir" does not exist. Creating directory."
+    echo "Directory $outdir does not exist. Creating directory."
     mkdir -p $outdir
-    echo "Completed creating "$outdir" directory."
+    echo "Completed creating $outdir directory."
 else
-    echo ""$outdir" already exists."
+    echo "$outdir already exists."
 fi
 
 # activate fastq-dl for downloading data

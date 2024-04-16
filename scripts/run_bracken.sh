@@ -91,7 +91,7 @@ for file in "$K2_OUTPUT"/*.kraken2; do
     OUTPUT="$OUTDIR"/"$(basename "$file" .kraken2)".bracken
 
     # report
-    echo "# Input file name:    "$(basename "$file" .kraken2)""
+    echo "# Input file name:    $(basename $file .kraken2) "
     echo "# kraken2 report file: $K2REP_INPUT"
     echo "# kraken2 file:        $K2_INPUT" 
     echo "# Output file:         $OUTPUT"
