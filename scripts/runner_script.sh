@@ -31,8 +31,15 @@ for file in "$rawdir"/SRR*.fastq.gz; do
     fastqc -o "$qcoutdir" "$file"
 done
 
+# move .zip files
+mkdir -p ./quality/fastqc/compressed_zip_files
+
+for file in "$qcoutdir"/SRR*.zip; do
+    mv $file quality/fastqc/compressed_zip_files/$(basename "$file")
+done
+
 # Set databases for kraken2 
-## This uses a multithreaded SLURM job with 18 cpus, which is much faster
+## This uses a multithreaded SLURM job with 28 cpus, which is much faster
 ## This job requires an input for where the kraken2 database is to be stored. Here I will have 
 
 K2DB=./kraken2/database
@@ -52,5 +59,19 @@ sbatch scripts/setup_kraken2_databases "$K2DB"
 K2DB=/fs/ess/PAS2700/users/awiedemer673/class_project/kraken2/database
 
 sbatch ./scripts/run_kracken2.sh "$K2DB" "$rawdir"
+
+# run bracken
+
+## This script requires 3 inputs for `bracken-build` - the kraken2 database dir, the k-mers used to build the kraken2 database (35 for kraken2), and the data read length
+## I'm using a read length of 75 because that seems to be the max in most fastqc results files that still has good quality
+
+## This script takes many of the outputs of `run_kracken2.sh` automatically, so it needs to be run after `run_kracken2.sh`
+## Again, if a conda enviroment does no exist it will create one. The conda enviroment needs to explicitly be ./conda/bracken
+
+## The outputs are created in a dir called `./bracken` with the `./bracken/results` and `./bracken/reports`.
+
+sbatch ./scripts/run_bracken.sh "$K2DB" 35 75
+
+
 
 
