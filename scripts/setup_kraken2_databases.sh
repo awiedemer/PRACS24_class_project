@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --account=PAS2700
-#SBATCH --time 12:00:00
+#SBATCH --time 8:00:00
 #SBATCH --cpus-per-task=28
 #SBATCH --mail-type=END,FAIL
 
@@ -43,7 +43,7 @@ conda activate ./conda/kraken2
 if [ ! -f "$DBNAME" ]; then
     echo "Database file $DBNAME does not exist. Creating directory and building database."
     mkdir -p "$DBNAME"
-    kraken2-build --standard --db "$DBNAME"
+    kraken2-build --standard --threads 28 --db "$DBNAME"
 elif [ ! -s "$DBNAME" ]; then
     echo "Database file $DBNAME is empty. Building database."
     kraken2-build --standard --threads 28 --db "$DBNAME"
