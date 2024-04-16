@@ -9,7 +9,7 @@ set -euo pipefail
 # get in the right place
 cd /fs/ess/PAS2700/users/$USER/class_project/
 
-# input vaiables
+# input variables
 DBNAME=$1
 INPUTDATA=$2
 
