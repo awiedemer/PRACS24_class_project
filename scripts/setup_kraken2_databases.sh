@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --account=PAS2700
-#SBATCH --time 8:00:00
+#SBATCH --time 24:00:00
 #SBATCH --cpus-per-task=28
 #SBATCH --mail-type=END,FAIL
 
