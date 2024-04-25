@@ -22,13 +22,13 @@ fi
 
 
 # output dirs from run_kraken2
-K2REP_DIR=./kraken2/kraken_reports
+K2REP_DIR=./kraken2/kraken_reports/
 
-K2_OUTPUT=./kraken2/kraken_outputs
+K2_OUTPUT=./kraken2/kraken_outputs/
 
 # kraken2 location
 
-K2LOCATION=./conda/kraken2
+K2LOCATION=./conda/kraken2/
 
 # species level assignment
 LEVEL="S"
@@ -79,7 +79,13 @@ fi
 conda activate ./conda/bracken
 
 # build bracken
-bracken-build -v -d "$KRAKEN_DB" -t 20 -k $KMERS -l $READ_LENGTH -x $K2LOCATION
+
+
+# find -L library \(-name "*.fna" -o -name "*.fa" -o -name "*.fasta" \) -exec cat {} + > input.fasta
+
+bracken-build -d "$KRAKEN_DB" -t 20 -k "$KMERS" -l "$READ_LENGTH"
+
+
 
 # run bracken
 ## Here I tried to be clever and use the input names from the kraken2 output
