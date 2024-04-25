@@ -19,3 +19,6 @@ kraken2/
 quality/
 *~
 
+./
+core*
+
