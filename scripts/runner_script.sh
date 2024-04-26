@@ -48,6 +48,15 @@ K2DB=./kraken2/database
 ## Additionally, if a conda enviroment does no exist, it will create one. The conda enviroment needs to explicitly be ./conda/kraken2
 sbatch scripts/setup_kraken2_databases "$K2DB"
 
+
+# set up bracken
+
+## This script requires 3 inputs for `bracken-build` - the kraken2 database dir, the k-mers used to build the kraken2 database (35 for kraken2), and the data read length
+## I'm using a read length of 75 because that seems to be the max in most fastqc results files that still has good quality
+
+sbatch ./scripts/setup_bracken.sh "$K2DB" 35 75
+
+
 # run kraken2
 
 ## This script requires 2 inputs - the kraken2 database dir and the dir containing the .fastqc.gz data. 
@@ -56,13 +65,13 @@ sbatch scripts/setup_kraken2_databases "$K2DB"
 
 ## the outputs of this script will be put in a dir called ./kraken2/kraken_reports for storing the reports and ./kraken2/kraken_outputs for storing the output files
 
-K2DB=/fs/ess/PAS2700/users/awiedemer673/class_project/kraken2/database
+K2DB=35 75/fs/ess/PAS2700/users/awiedemer673/class_project/kraken2/database
 
 sbatch ./scripts/run_kracken2.sh "$K2DB" "$rawdir"
 
 # run bracken
 
-## This script requires 3 inputs for `bracken-build` - the kraken2 database dir, the k-mers used to build the kraken2 database (35 for kraken2), and the data read length
+## This script requires 2 inputs for - the kraken2 database dir,  and the data read length
 ## I'm using a read length of 75 because that seems to be the max in most fastqc results files that still has good quality
 
 ## This script takes many of the outputs of `run_kracken2.sh` automatically, so it needs to be run after `run_kracken2.sh`
@@ -70,8 +79,7 @@ sbatch ./scripts/run_kracken2.sh "$K2DB" "$rawdir"
 
 ## The outputs are created in a dir called `./bracken` with the `./bracken/results` and `./bracken/reports`.
 
-sbatch ./scripts/run_bracken.sh "$K2DB" 35 75
-
+sbatch ./scripts/run_bracken.sh "$K2DB" 75
 
 
 
