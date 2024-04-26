@@ -22,3 +22,6 @@ quality/
 ./
 core*
 
+bracken/
+*~
+
