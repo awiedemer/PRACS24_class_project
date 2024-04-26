@@ -11,15 +11,13 @@ cd /fs/ess/PAS2700/users/$USER/class_project/
 
 # variables
 KRAKEN_DB=$1
-KMERS=$2
-READ_LENGTH=$3
+READ_LENGTH=$2
 
 #check if input is correct
-if [[ ! "$#" -eq 3 ]]; then
-    echo "Error: Requires kraken2 database dir, kmer length used (35 if using kraken2), read length)"
+if [[ ! "$#" -eq 2 ]]; then
+    echo "Error: Requires kraken2 database dir, read length)"
     exit 1
 fi
-
 
 # output dirs from run_kraken2
 K2REP_DIR=./kraken2/kraken_reports/
@@ -48,7 +46,6 @@ mkdir -p $OUTDIR $REP_OUTDIR
 echo "# Starting script run_bracken.sh"
 date
 echo "# kraken2 database dir:          $KRAKEN_DB"
-echo "# k-mers:                        $KMERS"
 echo "# read length:                   $READ_LENGTH"
 echo
 echo "# kraken2 location:              $K2LOCATION"
@@ -77,15 +74,6 @@ fi
 
 # activate bracken
 conda activate ./conda/bracken
-
-# build bracken
-
-
-# find -L library \(-name "*.fna" -o -name "*.fa" -o -name "*.fasta" \) -exec cat {} + > input.fasta
-
-bracken-build -d "$KRAKEN_DB" -t 20 -k "$KMERS" -l "$READ_LENGTH"
-
-
 
 # run bracken
 ## Here I tried to be clever and use the input names from the kraken2 output
