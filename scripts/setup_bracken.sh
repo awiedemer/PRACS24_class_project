@@ -49,3 +49,8 @@ conda activate ./conda/bracken
 
 # build bracken
 bracken-build -d "$KRAKEN_DB" -t 30 -k "$KMERS" -l "$READ_LENGTH"
+
+# Final reporting
+echo 
+echo "# Finished script setup_bracken.sh"
+date
