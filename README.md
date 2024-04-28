@@ -23,8 +23,9 @@ Overall, the workflow is
 1. Download metagenomics data
 2. Check data quality with `fastqc`
 3. Set up `Kraken2` (needs databases)
-4. Run `Kraken2`
-5. Run `Bracken`
+4. Set up `Bracken`
+5. Run `Kraken2`
+6. Run `Bracken`
 
 Following the runner script is simple, but time consuming as each batch job can take several hours to days (downloading metagenomics data takes quite some time)
 
