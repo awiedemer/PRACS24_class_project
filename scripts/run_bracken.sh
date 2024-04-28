@@ -7,7 +7,7 @@
 set -euo pipefail
 
 # get in the right place
-cd /fs/ess/PAS2700/users/$USER/class_project/
+cd /fs/ess/PAS2700/users/$USER/class_project
 
 # variables
 KRAKEN_DB=$1
@@ -20,13 +20,13 @@ if [[ ! "$#" -eq 2 ]]; then
 fi
 
 # output dirs from run_kraken2
-K2REP_DIR=./kraken2/kraken_reports/
+K2REP_DIR=./kraken2/kraken_reports
 
-K2_OUTPUT=./kraken2/kraken_outputs/
+K2_OUTPUT=./kraken2/kraken_outputs
 
 # kraken2 location
 
-K2LOCATION=./conda/kraken2/
+K2LOCATION=./conda/kraken2
 
 # species level assignment
 LEVEL="S"
@@ -83,6 +83,7 @@ for file in "$K2_OUTPUT"/*.kraken2; do
     K2REP_INPUT="$K2REP_DIR"/"$(basename "$file" .kraken2)".k2report 
     K2_INPUT="$K2_OUTPUT"/"$(basename "$file" .kraken2)".kraken2
     OUTPUT="$OUTDIR"/"$(basename "$file" .kraken2)".bracken
+    REP_OUTPUT="$REP_OUTDIR"/"$(basename "$file" .kraken2)".breport
 
     # report
     echo "# Input file name:    $(basename $file .kraken2) "
@@ -91,7 +92,7 @@ for file in "$K2_OUTPUT"/*.kraken2; do
     echo "# Output file:         $OUTPUT"
 
     # run bracken
-    bracken -d "$KRAKEN_DB" -i "$K2REP_INPUT" -o "$OUTPUT" -r "$READ_LENGTH" -l "$LEVEL" -t "$THRESH" -w $REP_OUTDIR
+    bracken -d "$KRAKEN_DB" -i "$K2REP_INPUT" -o "$OUTPUT" -r "$READ_LENGTH" -l "$LEVEL" -t "$THRESH" -w $REP_OUTPUT
 
 done
 
