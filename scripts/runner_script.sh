@@ -6,15 +6,17 @@
 set -euo pipefail
 
 # create class proj
+## Note this will only work for this course project PAS2700
 mkdir -p /fs/ess/PAS2700/users/$USER/class_project
 
 # get in position
 cd /fs/ess/PAS2700/users/$USER/class_project
 
 # get data with get_data. This script will also make the dir if it does not already exist.
+## running this script takes a considerable amount of time and may time out
 rawdir=./data/raw
 
-sbatch ./scripts/get_data SRP083099 "$rawdir"
+sbatch ./scripts/get_data.sh SRP083099 "$rawdir"
 
 # check data with fastqc
 

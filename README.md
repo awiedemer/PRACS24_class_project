@@ -39,3 +39,8 @@ This script is customized for this specific data analysis - this code could be u
 
 What this script is __missing__ is quality improvement and host read removal which would be done with something like __trimmomatic__ and __BowTie2__ respectivly - since the NCBI data has already had these steps completed, they were not included in this workflow. 
 
+
+## Submission Notes
+Most of this code works for me, but I have had particular trouble getting the `get_data.sh` script to download all the files and it __may only partially download the requested data__ (as in not all of the requested files, the files that are available are complete though). I have used what data did download for this project, and have not tried to rerun it due to the large time requirments. These scripts were able to run on the data available and should still work with new files though.
+
+Additionally, the file paths for all of the scripts require the user to have acess to the `/fs/ess/PAS2700/users/$USER` directory. All of the scripts currently require that this path be available, and other users will need to tweak the scripts to be able to use another directory, available at the top of each script. 

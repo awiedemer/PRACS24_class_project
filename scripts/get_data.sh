@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=PAS2700
 #SBATCH --time 48:00:00
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=30
 #SBATCH --mail-type=END,FAIL
 
 set -euo pipefail
