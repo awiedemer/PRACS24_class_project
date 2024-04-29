@@ -13,6 +13,8 @@ mkdir -p /fs/ess/PAS2700/users/$USER/class_project
 cd /fs/ess/PAS2700/users/$USER/class_project
 
 # get data with get_data. This script will also make the dir if it does not already exist.
+# This script takes 2 arguments - the NCBI project and the raw data location
+
 ## running this script takes a considerable amount of time and may time out
 rawdir=./data/raw
 
